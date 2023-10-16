@@ -1,0 +1,243 @@
+<div class="container p-4">
+  <h1>Titulo</h1>
+</div>
+
+<div class="container">
+
+  <div class="col-12">
+    <div class="row p-3" [formGroup]="shearchForm">
+      <div class="col-sm-12 col-md-3">
+        <label for="Campo1" class="form-label">Campo 1</label>
+        <input class="form-control" type="text" placeholder="Default input" aria-label="default input example"
+          id="Campo1" formControlName="Campo1" [ngClass]="{'is-invalid':  shearchForm.controls.Campo1.touched && shearchForm.controls.Campo1.errors }">
+
+          <!-- div para mostrar mensaje de campo requerido, se complementa con "[ngClass]="{'is-invalid':  shearchForm.controls.Campo1.touched && shearchForm.controls.Campo1.errors }"" del input -->
+          <div *ngIf="shearchForm.controls.Campo1.touched && shearchForm.controls.Campo1.errors" class="invalid-feedback d-block">
+            <div *ngIf="shearchForm.controls.Campo1.errors.required" style="text-align: left; margin-left:10px">Requerido</div>
+          </div>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <label for="Campo2" class="form-label">Campo 2</label>
+        <input class="form-control" type="text" placeholder="Default input" aria-label="default input example"
+          id="Campo2" formControlName="Campo2">
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <label for="Campo3" class="form-label">Campo 3</label>
+        <input class="form-control" type="text" placeholder="Default input" aria-label="default input example"
+          id="Campo3" formControlName="Campo3">
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <label for="Campo4" class="form-label">Campo 4</label>
+        <input class="form-control" type="text" placeholder="Default input" aria-label="default input example"
+          id="Campo4" formControlName="Campo4">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row p-3">
+    <div class="col-12 d-md-flex justify-content-md-end">
+      <div class="col-sm-12 col-md-6 d-md-flex justify-content-md-end" style="padding: 0rem 1rem 1rem 1rem" >
+        <button type="button" class="btn btn-success" style="margin-right: 1rem; margin-bottom: 1rem;" (click)="clickSuccess()">Success</button>
+        <button type="button" class="btn btn-danger" style="margin-right: 1rem; margin-bottom: 1rem;" (click)="clickReset()">Reset</button>
+        <button type="button" class="btn btn-secondary" style="margin-right: 1rem; margin-bottom: 1rem;" (click)="clickOpenModal()">Open Modal</button>
+        <button type="button" class="btn btn-link" style="margin-right: 1rem; margin-bottom: 1rem;" (click)="clickPage2()">Go to Page2</button>
+      </div>
+      <!-- <div class="col-2" style="padding: 0em 1em 1em 1em">
+
+      </div>
+      <div class="col-2" style="padding: 0em 1em 1em 1em">
+
+      </div>-->
+
+
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade " id="ModalExample" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: 0px; margin-bottom: -40px;">
+        <h1 class="modal-title" id="staticBackdropLabel">Titulo Modal</h1>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="container p-3 fade-in">
+          <!-- <div class="row">
+            <div [formGroup]="empresaForm"  class="fade-in">
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <label class=" form-control-label" for="select-sistema">
+                      Nombre
+                    </label>
+                    <input class="form-control" autocomplete="off" placeholder="Nombre empresa" type="text" id="Nombre" name="Nombre" formControlName="Nombre" maxlength="50"
+                    [ngClass]="{'is-invalid':  empresaForm.controls.Nombre.touched && empresaForm.controls.Nombre.errors }"/>
+
+                    <div *ngIf="empresaForm.controls.Nombre.touched && empresaForm.controls.Nombre.errors" class="invalid-feedback d-block">
+                      <div *ngIf="empresaForm.controls.Nombre.errors.required" style="text-align: left; margin-left:10px">Requerido</div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4" style="padding-top:1.2rem;">
+                    <button type="button" class="btn btn-secondary btn-modal" (click)="hiddenfileinput.click()">Subir logo</button>
+                    <input class="form-control" autocomplete="off" placeholder="Logo" type="file" id="Logo" name="Logo" formControlName="Logo"
+                            #hiddenfileinput
+                            accept=".png"
+                            (change)="onFileSelect($event)"
+                            style="display: none" />
+                            <div *ngIf="logoAux!=null" class="valid-feedback d-block">
+                              Debe guardar para reflejar los cambios
+                            </div>
+
+                  </div>
+
+                  <div class="col-md-2">
+                    <label class=" form-control-label" for="select-sistema">
+                      Color
+                    </label>
+                    <input type="color" class="form-control form-control-color" id="Color" value="#563d7c" title="Seleccione Color" formControlName="ColorA" matInput placeholder="Color"
+                    [ngClass]="{'is-invalid':  empresaForm.controls.ColorA.touched && empresaForm.controls.ColorA.errors }">
+                    <div *ngIf="empresaForm.controls.ColorA.touched && empresaForm.controls.ColorA.errors" class="invalid-feedback d-block">
+                      <div *ngIf="empresaForm.controls.ColorA.errors.required" style="text-align: left; margin-left:10px">Requerido</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <label class=" form-control-label" for="select-sistema">
+                      PBI Username
+                    </label>
+                    <input class="form-control" autocomplete="off" placeholder="PBI Username" type="text" id="PBIUsername" name="PBIUsername" formControlName="PBIUsername" maxlength="100"
+                    [ngClass]="{'is-invalid':  empresaForm.controls.PBIUsername.touched && empresaForm.controls.PBIUsername.errors }"/>
+                    <div *ngIf="empresaForm.controls.PBIUsername.touched && empresaForm.controls.PBIUsername.errors" class="invalid-feedback d-block">
+                      <div *ngIf="empresaForm.controls.PBIUsername.errors.required" style="text-align: left; margin-left:10px">Requerido</div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <label class=" form-control-label" for="select-sistema">
+                      PBI Password
+                    </label>
+                    <div class="password-container">
+                      <input class="form-control" autocomplete="off" placeholder="PBI Password" id="PBIPassword" name="PBIPassword" formControlName="PBIPassword" maxlength="100"
+                      [ngClass]="{'is-invalid':  empresaForm.controls.PBIPassword.touched && empresaForm.controls.PBIPassword.errors }"
+                      [type]="hidePassword ? 'password' : 'text'"/>
+                      <a  class="table-action" placement="top" href="javascript:void(0)" (click)="clickEyePasswork()"><i class="fa-solid fa-eye" id="eye-password"></i></a>
+                    </div>
+                    <div *ngIf="empresaForm.controls.PBIPassword.touched && empresaForm.controls.PBIPassword.errors" class="invalid-feedback d-block">
+                      <div *ngIf="empresaForm.controls.PBIPassword.errors.required" style="text-align: left; margin-left:10px">Requerido</div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <label class=" form-control-label" for="select-sistema">
+                      Confirmar PBI Password
+                    </label>
+                    <div class="password-container">
+                      <input class="form-control" autocomplete="off" placeholder="PBI Password" type="password" id="PBIPassword2" name="PBIPassword2" formControlName="PBIPassword2" maxlength="100"
+                      [ngClass]="{'is-invalid':  empresaForm.controls.PBIPassword2.touched && empresaForm.controls.PBIPassword2.errors }"
+                      [type]="hideConfirmar ? 'password' : 'text'"/>
+                      <a  class="table-action" placement="top" href="javascript:void(0)" (click)="clickEyeConfirmar()"><i class="fa-solid fa-eye" id="eye-confirmar"></i></a>
+                    </div>
+                    <div *ngIf="empresaForm.controls.PBIPassword2.touched && empresaForm.controls.PBIPassword2.errors" class="invalid-feedback d-block">
+                      <div *ngIf="empresaForm.controls.PBIPassword2.errors.required">Requerido</div>
+                    </div>
+                    <div *ngIf="empresaForm.errors" class="invalid-feedback d-block">
+                      <div *ngIf="empresaForm.errors.notSame">Las contraseñas no coinciden</div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label class=" form-control-label" for="select-sistema">
+                      WorkSpace Id
+                    </label>
+                    <input class="form-control" autocomplete="off" placeholder="WorkSpace Id" type="text" id="WorkSpaceId" name="WorkSpaceId" formControlName="WorkSpaceId" maxlength="100"
+                    [ngClass]="{'is-invalid':  empresaForm.controls.WorkSpaceId.touched && empresaForm.controls.WorkSpaceId.errors }"/>
+                    <div *ngIf="empresaForm.controls.WorkSpaceId.touched && empresaForm.controls.WorkSpaceId.errors" class="invalid-feedback d-block">
+                      <div *ngIf="empresaForm.controls.WorkSpaceId.errors.required" style="text-align: left; margin-left:10px">Requerido</div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class=" form-control-label" for="select-sistema">
+                      Aplicación Id
+                    </label>
+                    <input class="form-control" autocomplete="off" placeholder="Aplicación Id" type="text" id="AplicationID" name="AplicationID" formControlName="AplicationID" maxlength="100"
+                    [ngClass]="{'is-invalid':  empresaForm.controls.AplicationID.touched && empresaForm.controls.AplicationID.errors }"/>
+                    <div *ngIf="empresaForm.controls.AplicationID.touched && empresaForm.controls.AplicationID.errors" class="invalid-feedback d-block">
+                      <div *ngIf="empresaForm.controls.AplicationID.errors.required" style="text-align: left; margin-left:10px">Requerido</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-md-8">
+                    <label class=" form-control-label" for="select-sistema">
+                      Url Api
+                    </label>
+                    <input class="form-control" autocomplete="off" placeholder="Url Api" type="url" id="UrlApi" name="UrlApi" formControlName="UrlApi" maxlength="250"/>
+                    <div *ngIf="!urlValida || !urlNoExiste" class="invalid-feedback d-block">
+                      <div style="text-align: left; margin-left:10px" *ngIf="!urlValida">Formato URL invalido </div>
+                      <div style="text-align: left; margin-left:10px" *ngIf="!urlNoExiste">URL ya esta registrada </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4" style="padding-top:1.2rem;">
+                    <button type="button" class="btn btn-secondary btn-modal" (click)="agregarApiEmpresa()">Agregar Url</button>
+                  </div>
+                </div>
+
+                <div class="row table-modal" >
+                  <div class="col-12">
+                    <div class=" table-responsive table-modal">
+                      <table id="tableApiEmpresa" class="table align-items-center table-flush table-hover table-sm">
+                        <thead class=" thead-light">
+                          <tr>
+                            <th class="th-signatus">URL</th>
+                            <th class="th-signatus">Eliminar</th>
+                          </tr>
+                        </thead>
+                        <ng-container *ngIf='filterApiEmpresa(apiEmpresaModal)==null || filterApiEmpresa(apiEmpresaModal).length==0'>
+                          <tbody>
+                            <tr>
+                              <td colspan="3">No existen registros disponibles.</td>
+                            </tr>
+                          </tbody>
+                        </ng-container>
+                        <ng-container *ngIf='apiEmpresaModal!=null && apiEmpresaModal.length>0'>
+                          <tbody>
+                            <tr *ngFor='let reg of filterApiEmpresa(apiEmpresaModal)'>
+                              <td>{{reg.URLApi}}</td>
+                              <td class=" table-actions text-center">
+                                <a  class="table-action" title="Eliminar" placement="top" href="javascript:void(0)" (click)="eliminarApiEmpresa(reg)"><i class="fa-solid fa-trash fa-lg text-danger"></i> </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </ng-container>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-modal" (click)="closeModal()">Cancelar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
