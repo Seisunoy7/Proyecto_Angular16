@@ -7,7 +7,7 @@
   <div class="col-12">
     <div class="row p-3" [formGroup]="shearchForm">
       <div class="col-sm-12 col-md-3">
-        <label for="Campo1" class="form-label">Campo 1</label>
+        <label for="Campo1" class="form-label">Campo Imput</label>
         <input class="form-control" type="text" placeholder="Default input" aria-label="default input example"
           id="Campo1" formControlName="Campo1" [ngClass]="{'is-invalid':  shearchForm.controls.Campo1.touched && shearchForm.controls.Campo1.errors }">
 
@@ -17,19 +17,39 @@
           </div>
       </div>
       <div class="col-sm-12 col-md-3">
-        <label for="Campo2" class="form-label">Campo 2</label>
-        <input class="form-control" type="text" placeholder="Default input" aria-label="default input example"
-          id="Campo2" formControlName="Campo2">
+        <label for="Campo2" class="form-label">Campo Password</label>
+        <input class="form-control" type="password" placeholder="Default input" aria-label="default input example"
+          id="Campo2" formControlName="Campo2" [ngClass]="{'is-invalid':  shearchForm.controls.Campo2.touched && shearchForm.controls.Campo2.errors }">
+
+          <!-- div para mostrar mensaje de campo requerido, se complementa con "[ngClass]="{'is-invalid':  shearchForm.controls.Campo1.touched && shearchForm.controls.Campo1.errors }"" del input -->
+          <div *ngIf="shearchForm.controls.Campo2.touched && shearchForm.controls.Campo2.errors" class="invalid-feedback d-block">
+            <div *ngIf="shearchForm.controls.Campo2.errors.required" style="text-align: left; margin-left:10px">Requerido</div>
+          </div>
+
       </div>
       <div class="col-sm-12 col-md-3">
-        <label for="Campo3" class="form-label">Campo 3</label>
-        <input class="form-control" type="text" placeholder="Default input" aria-label="default input example"
-          id="Campo3" formControlName="Campo3">
+        <label for="Campo3" class="form-label">Campo Lista</label>
+          <select class="form-select" aria-label=".form-select-lg example" id="Campo3" formControlName="Campo3" [ngClass]="{'is-invalid':  shearchForm.controls.Campo3.touched && shearchForm.controls.Campo3.errors }">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+
+           <!-- div para mostrar mensaje de campo requerido, se complementa con "[ngClass]="{'is-invalid':  shearchForm.controls.Campo1.touched && shearchForm.controls.Campo1.errors }"" del input -->
+           <div *ngIf="shearchForm.controls.Campo3.touched && shearchForm.controls.Campo3.errors" class="invalid-feedback d-block">
+            <div *ngIf="shearchForm.controls.Campo3.errors.required" style="text-align: left; margin-left:10px">Requerido</div>
+          </div>
+
       </div>
       <div class="col-sm-12 col-md-3">
-        <label for="Campo4" class="form-label">Campo 4</label>
-        <input class="form-control" type="text" placeholder="Default input" aria-label="default input example"
-          id="Campo4" formControlName="Campo4">
+        <!-- <label for="Campo4" class="form-label">Campo Sin Label</label> -->
+        <!-- <input class="form-control" type="text" placeholder="Default input" aria-label="default input example"
+          id="Campo4" formControlName="Campo4"> -->
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="Campo4" formControlName="Campo4" placeholder="name@example.com">
+            <label for="floatingInput">Campo sin label</label>
+          </div>
       </div>
     </div>
   </div>
@@ -51,6 +71,40 @@
       </div>-->
 
 
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="row">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr (click)="clickTable(1)">
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr (click)="clickTable(2)">
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr (click)="clickTable(3)">
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 

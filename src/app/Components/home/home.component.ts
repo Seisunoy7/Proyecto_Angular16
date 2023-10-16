@@ -25,15 +25,23 @@ export class HomeComponent implements OnInit {
 
 
   shearchForm: FormGroup;
+  modalForm: FormGroup;
   formModal: any;
 
   constructor(private _fb: FormBuilder, private router: Router) {
 
     this.shearchForm = this._fb.group({
       Campo1: ['', Validators.required],
-      Campo2: [''],
-      Campo3: [''],
+      Campo2: ['', Validators.required],
+      Campo3: ['', Validators.required],
       Campo4: ['']
+    });
+
+    this.modalForm = this._fb.group({
+      CampomModal1: ['', Validators.required],
+      CampoModal2: [''],
+      CampoModal3: [''],
+      CampoModal4: ['']
     });
   }
 
@@ -91,7 +99,13 @@ export class HomeComponent implements OnInit {
   }
 
   clickPage2() {
+    //Vanegar dentro de componentes configurados en el routing
     this.router.navigate(['/Page2']);
+  }
+
+  clickTable(index:any){
+    console.log(index)
+    this.clickOpenModal();
   }
 
 
