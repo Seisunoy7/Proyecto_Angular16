@@ -10,12 +10,12 @@ declare var window: any;
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CommonModule,
-    FormsModule
-  ]
+  standalone: false,
+  // imports: [
+  //   ReactiveFormsModule,
+  //   CommonModule,
+  //   FormsModule,
+  // ]
 })
 
 
