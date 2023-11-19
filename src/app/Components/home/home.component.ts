@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ParametrosService } from 'src/app/services/parametros.service';
 import Swal from 'sweetalert2';
 
+
 declare var window: any;
 
 @Component({
@@ -29,8 +30,18 @@ export class HomeComponent implements OnInit {
   modalForm: FormGroup;
   formModal: any;
 
+  //variables para api
   limitListApi:number = 10;
   listaApi:any;
+
+  //variables para paginador
+  page:number = 1;
+  collectionSize:number = 1;
+  // maxPage:number =1;
+  pageSize:number = 20;
+  currentPage:number =1;
+
+
 
   constructor(private _fb: FormBuilder, private router: Router, private parametrosService: ParametrosService) {
 
@@ -54,11 +65,17 @@ export class HomeComponent implements OnInit {
       document.getElementById("ModalExample")
     );
 
+    this.rickAndMortyCharacter();
 
-    this.parametrosService.get(`https://rickandmortyapi.com/api/character/?limit=${this.limitListApi}`)
+  }
+
+  rickAndMortyCharacter()
+  {
+    this.parametrosService.get(`https://rickandmortyapi.com/api/character/?page=${this.page}`)
     .subscribe(respuesta => {
       this.listaApi = respuesta;
       console.log(this.listaApi);
+      this.collectionSize = this.listaApi.info.count;
     });
   }
 
@@ -110,13 +127,18 @@ export class HomeComponent implements OnInit {
   }
 
   clickPage2() {
-    //Vanegar dentro de componentes configurados en el routing
+    //Nanegar dentro de componentes configurados en el routing
     this.router.navigate(['/Page2']);
   }
 
   clickTable(index:any){
     console.log(index)
     this.clickOpenModal();
+  }
+
+  refreshTable(){
+    console.log(this.page);
+    this.rickAndMortyCharacter();
   }
 
 

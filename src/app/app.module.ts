@@ -12,6 +12,7 @@ import { Page2Component } from './Components/page2/page2.component'
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http'
+import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -31,7 +32,9 @@ import {HttpClientModule} from '@angular/common/http'
     FormsModule,
     BrowserAnimationsModule,
     NgbModalModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbPaginationModule,
+    NgbTypeaheadModule
   ],
   providers: [],
   bootstrap: [AppComponent]
