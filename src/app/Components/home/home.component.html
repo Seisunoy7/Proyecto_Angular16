@@ -1,5 +1,5 @@
 <div class="container p-4">
-  <h1>Titulo</h1>
+  <h1>Funciono la weaaa!!!!</h1>
 </div>
 
 <div class="container">
@@ -7,7 +7,7 @@
   <div class="col-12">
     <div class="row p-3" [formGroup]="shearchForm">
       <div class="col-sm-12 col-md-3">
-        <label for="Campo1" class="form-label">Campo Imput</label>
+        <label for="Campo1" class="form-label">Campo Imput </label>
         <input class="form-control" type="text" placeholder="Default input" aria-label="default input example"
           id="Campo1" formControlName="Campo1" [ngClass]="{'is-invalid':  shearchForm.controls.Campo1.touched && shearchForm.controls.Campo1.errors }">
 
@@ -80,30 +80,34 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Especie</th>
+            <th scope="col">Typo</th>
+            <th scope="col">Genero</th>
+
           </tr>
         </thead>
-        <tbody>
-          <tr (click)="clickTable(1)">
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr (click)="clickTable(2)">
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr (click)="clickTable(3)">
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
+        <ng-container *ngIf='listaApi==null'>
+          <tbody>
+            <tr>
+              <td colspan="3">No existen registros disponibles.</td>
+            </tr>
+          </tbody>
+        </ng-container>
+        <ng-container *ngIf='listaApi!=null'>
+          <tbody>
+            <tr *ngFor="let item of listaApi.results;index as i" (click)="clickTable(i)">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{item.name}}</td>
+              <td>{{item.status}}</td>
+              <td>{{item.species}}</td>
+              <td>{{item.type}}</td>
+              <td>{{item.gender}}</td>
+            </tr>
+          </tbody>
+        </ng-container>
+
       </table>
     </div>
   </div>

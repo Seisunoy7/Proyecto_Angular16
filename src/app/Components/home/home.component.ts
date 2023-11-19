@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ParametrosService } from 'src/app/services/parametros.service';
 import Swal from 'sweetalert2';
 
 declare var window: any;
@@ -28,7 +29,10 @@ export class HomeComponent implements OnInit {
   modalForm: FormGroup;
   formModal: any;
 
-  constructor(private _fb: FormBuilder, private router: Router) {
+  limitListApi:number = 10;
+  listaApi:any;
+
+  constructor(private _fb: FormBuilder, private router: Router, private parametrosService: ParametrosService) {
 
     this.shearchForm = this._fb.group({
       Campo1: ['', Validators.required],
@@ -49,6 +53,13 @@ export class HomeComponent implements OnInit {
     this.formModal = new window.bootstrap.Modal(
       document.getElementById("ModalExample")
     );
+
+
+    this.parametrosService.get(`https://rickandmortyapi.com/api/character/?limit=${this.limitListApi}`)
+    .subscribe(respuesta => {
+      this.listaApi = respuesta;
+      console.log(this.listaApi);
+    });
   }
 
   clickSuccess() {

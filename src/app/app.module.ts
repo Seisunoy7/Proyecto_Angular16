@@ -11,12 +11,15 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Page2Component } from './Components/page2/page2.component'
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http'
+
 
 @NgModule({
   declarations: [
     AppComponent,
     // Page2Component,
     HomeComponent
+
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CommonModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgbModalModule
+    NgbModalModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
